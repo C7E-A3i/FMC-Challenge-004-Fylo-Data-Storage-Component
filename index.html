@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Fylo data storage component</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Remove default margin */
+      body,
+      h2,
+      p,
+      img,
+      a,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        font-size: 14px;
+        background-image: url("./images/bg-desktop.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: hsl(229, 57%, 11%);
+      }
+
+      .container {
+        /*max-width: 375px;*/
+        margin: 0 auto;
+        height: 100vh;
+      }
+
+      .section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .section .left_content {
+        border-radius: 10px 100px 10px 10px;
+        background-color: hsl(228, 56%, 26%);
+        margin: 0 0px 3px 0px;
+        padding: 40px 92px 40px 40px;
+      }
+
+      .section .left_content img {
+        margin-bottom: 20px;
+      }
+
+      .actions button {
+        height: 45px;
+        width: 45px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: hsl(229, 57%, 11%);
+        border: 0;
+        vertical-align: middle;
+        text-align: center;
+        margin-left: 15px;
+      }
+
+      .actions button:first-of-type {
+        margin-left: 0px;
+      }
+
+      .section .right_content {
+        border-radius: 10px;
+        background-color: hsl(228, 56%, 26%);
+        margin: 0% 0% 0 0%;
+        padding: 30px;
+        position: relative;
+      }
+
+      .section .right_content p {
+        color: white;
+        display: inline-block;
+      }
+
+      .section .right_content p#usage {
+        padding-left: 15px;
+      }
+
+      #gb_used_val {
+        font-weight: bold;
+      }
+
+      .bar_usage {
+        background-color: hsl(229, 57%, 11%);
+        border: 2px solid hsl(229, 57%, 11%);
+        height: 18px;
+        border-radius: 100px;
+        margin: 15px 0px 10px;
+        width: 95%;
+        vertical-align: middle;
+      }
+
+      .fill_usage {
+        background: linear-gradient(
+          to right,
+          hsl(6, 100%, 80%),
+          hsl(335, 100%, 65%)
+        );
+        border: 1px solid hsl(229, 57%, 11%);
+        border-radius: 100px;
+        height: 14px;
+        width: 80%;
+        margin: 0px;
+        display: flex;
+        justify-content: end;
+        padding: 0 1px 0 0;
+        align-items: center;
+      }
+
+      .ball_usage {
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+        margin: 0px;
+      }
+
+      .limit_usage_range {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        font-size: 12px;
+      }
+      p#min_limit_usage {
+        text-align: left;
+      }
+      p#max_limit_usage {
+        text-align: right;
+      }
+
+      .remaining_usage {
+        width: 177px;
+        background-color: white;
+        text-align: center;
+        vertical-align: middle;
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+        left: -15px;
+        bottom: 17px;
+        z-index: 100;
+      }
+
+      .remaining_usage #remaining_usage_value {
+        font-size: 35px;
+        font-weight: bold;
+        padding-right: 8px;
+      }
+
+      .remaining_usage p #GB_left {
+        color: hsl(229, 7%, 55%);
+        font-weight: bold;
+      }
+
+      @media screen and (min-width: 1024px) {
+       
+        .section {
+          height: 100vh;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 108px 50px;
+        }
+        .section .left_content {
+          border-radius: 10px 100px 10px 10px;
+          background-color: hsl(228, 56%, 26%);
+          margin: 0 10px 0 0px;
+          padding: 40px 62px 40px 27px;
+        }
+
+        .section .left_content img {
+        margin-bottom: 20px;
+      }
+
+      .actions button {
+        height: 45px;
+        width: 45px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: hsl(229, 57%, 11%);
+        border: 0;
+        vertical-align: middle;
+        text-align: center;
+        margin-left: 15px;
+      }
+
+      .actions button:first-of-type {
+        margin-left: 0px;
+      }
+        .section .right_content {
+          border-radius: 10px;
+          background-color: hsl(228, 56%, 26%);
+          margin: 0% 0% 0 0%;
+          padding: 30px;
+          width: 50%;
+          position: relative;
+          top: 28px;
+        }
+
+        .remaining_usage {
+          width: 177px;
+          background-color: white;
+          text-align: center;
+          vertical-align: middle;
+          padding: 15px;
+          border-radius: 10px 10px 0px 10px;
+          position: relative;
+          bottom: 50px;
+          z-index: 100; 
+          left: -220px;
+        }
+        .remaining_usage::before{
+          content: "";
+          background-color: white;
+          width: 25px;
+          height: 25px;
+          position: absolute;
+          right: 0px;
+          bottom: -25px;
+          clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <div class="left_content">
+          <img src="./images/logo.svg" alt="flyo logo" />
+          <!--Start: left_section/action buttons-->
+          <div class="actions">
+            <button class="doc_buttons">
+              <img
+                class="doc_action"
+                src="./images/icon-document.svg"
+                alt="document"
+              />
+            </button>
+            <button class="folder_button">
+              <img
+                class="folder_action"
+                src="./images/icon-folder.svg"
+                alt="folder"
+              />
+            </button>
+            <button class="upload_button">
+              <img
+                class="upload_action"
+                src="./images/icon-upload.svg"
+                alt="upload"
+              />
+            </button>
+          </div>
+          <!--end: left_section/action buttons-->
+        </div>
+        <!--start: right content-->
+        <div class="right_content">
+          <p id="usage">
+            You’ve used <span id="gb_used_val">815 GB </span>of your storage
+          </p>
+          <!--start: progress bar-->
+          <div class="bar_usage">
+            <div class="fill_usage">
+              <div class="ball_usage"></div>
+            </div>
+          </div>
+          <!--end: progress bar-->
+          <!-- min to max limit -->
+          <div class="limit_usage_range">
+            <p id="min_limit_usage">0 GB</p>
+            <p id="max_limit_usage">1000 GB</p>
+          </div>
+          <!-- min to max limit -->
+        </div>
+        <!--end: right content-->
+
+        <div class="remaining_usage">
+          <p>
+            <span id="remaining_usage_value">185</span>
+            <span id="GB_left">GB LEFT</span>
+          </p>
+
+          <!-- <div class="call_out_point"></div>-->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
